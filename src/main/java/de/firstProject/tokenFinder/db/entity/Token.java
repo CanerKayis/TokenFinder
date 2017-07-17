@@ -23,7 +23,6 @@ public class Token {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private int version;
-	private String content;
 
 	private Environment environment; // Serverumgebung
 
@@ -43,10 +42,6 @@ public class Token {
 		this.environment = environment;
 	}
 
-	public String getContent() {
-		return this.content;
-	}
-
 	public Environment getEnvironment() {
 		return this.environment;
 	}
@@ -62,10 +57,6 @@ public class Token {
 
 	public int getVersion() {
 		return this.version;
-	}
-
-	public void setContent(final String content) {
-		this.content = content;
 	}
 
 	public void setEnvironment(final Environment environment) {
