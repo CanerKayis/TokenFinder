@@ -7,7 +7,6 @@ import org.easymock.TestSubject;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import de.firstProject.tokenFinder.db.entity.Users;
 import de.firstProject.tokenFinder.db.repository.UserRepository;
 
 @RunWith(EasyMockRunner.class)
@@ -27,7 +26,7 @@ public class UserServiceTest {
 		EasyMock.replay(this.userRepository);
 
 		// Act
-		Iterable<Users> user = this.userService.getUser();
+		// Iterable<Users> user = this.userService.getUser();
 
 		// Assert
 

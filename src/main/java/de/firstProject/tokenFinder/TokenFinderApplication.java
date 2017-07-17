@@ -13,4 +13,5 @@ public class TokenFinderApplication {
 	public static void main(final String[] args) {
 		SpringApplication.run(TokenFinderApplication.class, args);
 	}
+
 }
