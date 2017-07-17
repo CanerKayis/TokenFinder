@@ -1,6 +1,5 @@
 package de.firstProject.tokenFinder.db.entity;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,7 +11,7 @@ import javax.persistence.Table;
 public class Application {
 
 	@Id
-	@Column(name = "APPLICATION_ID")
+	// @Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private int version;
