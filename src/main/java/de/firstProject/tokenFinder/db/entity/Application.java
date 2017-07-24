@@ -20,11 +20,11 @@ public class Application {
 	public Application() {
 	}
 
-	// public Application(final int version, final String applicationName) {
-	// super();
-	// this.version = version;
-	// this.applicationName = applicationName;
-	// }
+	public Application(final int version, final String applicationName) {
+		super();
+		this.version = version;
+		this.applicationName = applicationName;
+	}
 
 	public String getApplicationName() {
 		return this.applicationName;

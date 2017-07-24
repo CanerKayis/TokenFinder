@@ -14,7 +14,7 @@ import javax.persistence.Table;
 @Table(name = "USERS")
 public class Users {
 
-	// @Column(name = "id")
+	@Column(name = "id")
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
@@ -64,6 +64,12 @@ public class Users {
 
 	public void setVersion(final int version) {
 		this.version = version;
+	}
+
+	@Override
+	public String toString() {
+		return "Users [id=" + this.id + ", version=" + this.version + ", userName=" + this.userName + ", token="
+				+ this.token + "]";
 	}
 
 }

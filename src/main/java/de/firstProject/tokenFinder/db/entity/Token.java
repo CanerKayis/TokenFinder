@@ -31,10 +31,14 @@ public class Token {
 	public Token() {
 	}
 
-	public Token(final Long id, final int version, final Environment environment) {
+	public Token(final int version, final Environment environment) {
 		super();
 		this.version = version;
 		this.environment = environment;
+	}
+
+	public Application getApplication() {
+		return this.application;
 	}
 
 	public Environment getEnvironment() {
@@ -45,14 +49,18 @@ public class Token {
 		return this.id;
 	}
 
+	public int getVersion() {
+		return this.version;
+	}
+
+	public void setApplication(final Application application) {
+		this.application = application;
+	}
+
 	// @Column(name = "USER_ID")
 	// public List<Users> getUserList() {
 	// return this.userList;
 	// }
-
-	public int getVersion() {
-		return this.version;
-	}
 
 	public void setEnvironment(final Environment environment) {
 		this.environment = environment;
@@ -64,6 +72,12 @@ public class Token {
 
 	public void setVersion(final int version) {
 		this.version = version;
+	}
+
+	@Override
+	public String toString() {
+		return "Token [id=" + this.id + ", version=" + this.version + ", environment=" + this.environment
+				+ ", application=" + this.application + "]";
 	}
 
 }

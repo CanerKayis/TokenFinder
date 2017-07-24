@@ -38,12 +38,15 @@
 		<column name="version" type="integer">
 		<constraints nullable="false"/>
 		</column>
+		
 <!-- 		<column name="token_id" type="bigint">
 		<constraints foreignKeyName="id"/>
-		</column> -->
-	</createTable>
+		</column> 
+	
  	<addForeignKeyConstraint constraintName="addFk_userId_to_token" referencedTableName="token" baseColumnNames="id" 
-	baseTableName="users" referencedColumnNames="id"/> 
+	baseTableName="users" referencedColumnNames="id"/>   	-->
+	
+</createTable>
 </changeSet>
 
 
