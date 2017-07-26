@@ -101,7 +101,7 @@ public class RestController {
 
 	@RequestMapping(value = "getbytokenid/{tokenId}", method = RequestMethod.GET)
 	public Optional<Token> getToken(@PathVariable final Long tokenId) {
-		log.debug("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+		log.debug("!!!!!!!!!!!!!!!!!!!!!!!!!TEST!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 		return this.tokenRepository.findById(tokenId);
 	}
 
