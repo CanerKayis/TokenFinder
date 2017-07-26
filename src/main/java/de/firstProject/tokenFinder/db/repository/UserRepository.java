@@ -1,5 +1,7 @@
 package de.firstProject.tokenFinder.db.repository;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 
@@ -7,7 +9,7 @@ import de.firstProject.tokenFinder.db.entity.Users;
 
 public interface UserRepository extends CrudRepository<Users, Long> {
 
-	Users findByUserName(String userName);
+	List<Users> findByUserName(String userName);
 
 	@Autowired
 	@Override

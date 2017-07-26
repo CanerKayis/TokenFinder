@@ -18,6 +18,7 @@ public class Token {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private int version;
+	private String content;
 
 	private Environment environment; // Serverumgebung
 
@@ -31,14 +32,19 @@ public class Token {
 	public Token() {
 	}
 
-	public Token(final int version, final Environment environment) {
+	public Token(final String content, final int version, final Environment environment) {
 		super();
+		this.content = content;
 		this.version = version;
 		this.environment = environment;
 	}
 
 	public Application getApplication() {
 		return this.application;
+	}
+
+	public String getContent() {
+		return this.content;
 	}
 
 	public Environment getEnvironment() {
@@ -55,6 +61,10 @@ public class Token {
 
 	public void setApplication(final Application application) {
 		this.application = application;
+	}
+
+	public void setContent(final String content) {
+		this.content = content;
 	}
 
 	// @Column(name = "USER_ID")
