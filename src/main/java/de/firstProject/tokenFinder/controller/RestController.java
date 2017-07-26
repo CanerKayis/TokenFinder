@@ -84,30 +84,33 @@ public class RestController {
 		Token token1 = new Token(
 				"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9.TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ",
 				3, Environment.TST);
-		log.debug("token " + token1 + " created");
+		log.info("token " + token1 + " created");
 		Application application1 = new Application(122, "testApplication");
-		log.debug("application" + application1 + "is created");
+		log.info("application" + application1 + "is created");
 		user1.setToken(token1);
-		log.debug(token1 + " linked to user: " + userName);
+		log.info(token1 + " linked to user: " + userName);
 		token1.setApplication(application1);
-		log.debug(application1 + " linked to token: " + token1);
+		log.info(application1 + " linked to token: " + token1);
 		this.userRepository.save(user1);
-		log.debug(user1 + " got saved in repository");
+		log.info(user1 + " got saved in repository");
 		this.tokenRepository.save(token1);
-		log.debug(token1 + "  got saved in repository");
+		log.info(token1 + "  got saved in repository");
 		System.out.println(user1.toString());
 		return this.userRepository.findAll();
 	}
 
 	@RequestMapping(value = "getbytokenid/{tokenId}", method = RequestMethod.GET)
 	public Optional<Token> getToken(@PathVariable final Long tokenId) {
-		log.debug("!!!!!!!!!!!!!!!!!!!!!!!!!TEST!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+		log.debug("request TokenId" + tokenId);
+		if (this.tokenRepository.findById(tokenId).isPresent() == false) {
+			log.debug("requested tokenId " + tokenId + " not found");
+		}
 		return this.tokenRepository.findById(tokenId);
+
 	}
 
 	@RequestMapping(value = "getbyusername/{userName}", method = RequestMethod.GET)
 	public List<Users> getUser(@PathVariable final String userName) {
-
 		return this.userRepository.findByUserName(userName);
 	}
 
