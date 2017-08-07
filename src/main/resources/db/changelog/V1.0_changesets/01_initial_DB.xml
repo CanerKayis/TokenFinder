@@ -7,7 +7,17 @@
    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
 
 
-<changeSet id="1" author="ckayis">
+<changeSet id="addTokenTable" author="ckayis">
+
+<createSequence 
+            cycle="false"
+            incrementBy="1"
+            minValue="1"
+            ordered="true"
+            schemaName="public"
+            sequenceName="TOKEN_SEQ"
+            startValue="1"/>
+            
 	<createTable tableName="token">
 		<column name="id" type="bigint">
 		<constraints primaryKey="true" nullable="false"/>
@@ -15,7 +25,7 @@
 		<column name="version" type="integer">
 		<constraints nullable="false"/>
 		</column>
-		<column name="content" type="varchar">
+		<column name="content" type="varchar2">
 		</column>
 		<column name="environment" type="integer">
 		</column>
@@ -28,15 +38,23 @@
 	</createTable>
 </changeSet>
 
-<changeSet id="2" author="ckayis">
+<changeSet id="addUserTable" author="ckayis">
+<createSequence 
+            cycle="false"
+            incrementBy="1"
+            minValue="1"
+            ordered="true"
+            schemaName="public"
+            sequenceName="USER_SEQ"
+            startValue="1"/>
+            
 	<createTable tableName="users">
 		<column name="id" type="bigint">
 		<constraints primaryKey="true" nullable="false"/>
 		</column>
-		<column name="name" type="varchar" >
+		<column name="name" type="varchar2(50)" >
 		</column>
 		<column name="version" type="integer">
-		<constraints nullable="false"/>
 		</column>
 		
 <!-- 		<column name="token_id" type="bigint">
@@ -50,15 +68,24 @@
 </changeSet>
 
 
-<changeSet id="3" author="ckayis">
+<changeSet id="addApplicationTable" author="ckayis">
+<createSequence 
+            cycle="false"
+            incrementBy="1"
+            minValue="1"
+            ordered="true"
+            schemaName="public"
+            sequenceName="APPLICATION_SEQ"
+            startValue="1"/>
+
 	<createTable tableName="application">
 		<column name="id" type="bigint">
 		<constraints primaryKey="true" nullable="false"/>
 		</column>
 		<column name="version" type="integer">
-		<constraints nullable="false"/>
 		</column>
-		<column name="appname" type="varchar">
+		<column name="appname" type="varchar2(30)" >
+		<!-- #addSize -->
 		</column>
 	</createTable>
 	<addForeignKeyConstraint constraintName="addFk_applicationId_to_token" referencedTableName="token" baseColumnNames="id"

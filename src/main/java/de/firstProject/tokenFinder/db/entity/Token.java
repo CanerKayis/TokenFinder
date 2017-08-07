@@ -1,13 +1,17 @@
 package de.firstProject.tokenFinder.db.entity;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Version;
 
 @Entity
 @Table(name = "TOKEN")
@@ -15,29 +19,20 @@ public class Token {
 
 	// @Column(name = "id")
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TokenSeqGenerator")
+	@SequenceGenerator(name = "TokenSeqGenerator", sequenceName = "TOKEN_SEQ")
 	private Long id;
+	@Version
 	private int version;
+
+	@Column(name = "CONTENT")
 	private String content;
 
-	private Environment environment; // Serverumgebung
-
-	// @Column(name = "id")
-	// @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	// private final List<Users> userList = new ArrayList<>();
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private Users user;
 
 	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private Application application;
-
-	public Token() {
-	}
-
-	public Token(final String content, final int version, final Environment environment) {
-		super();
-		this.content = content;
-		this.version = version;
-		this.environment = environment;
-	}
 
 	public Application getApplication() {
 		return this.application;
@@ -47,12 +42,12 @@ public class Token {
 		return this.content;
 	}
 
-	public Environment getEnvironment() {
-		return this.environment;
-	}
-
 	public Long getId() {
 		return this.id;
+	}
+
+	public Users getUser() {
+		return this.user;
 	}
 
 	public int getVersion() {
@@ -67,27 +62,13 @@ public class Token {
 		this.content = content;
 	}
 
-	// @Column(name = "USER_ID")
-	// public List<Users> getUserList() {
-	// return this.userList;
-	// }
-
-	public void setEnvironment(final Environment environment) {
-		this.environment = environment;
-	}
-
-	public void setId(final Long id) {
-		this.id = id;
-	}
-
-	public void setVersion(final int version) {
-		this.version = version;
+	public void setUser(final Users user) {
+		this.user = user;
 	}
 
 	@Override
 	public String toString() {
-		return "Token [id=" + this.id + ", version=" + this.version + ", environment=" + this.environment
-				+ ", application=" + this.application + "]";
+		return "Token [id=" + this.id + ", version=" + this.version + ", application=" + this.application + "]";
 	}
 
 }

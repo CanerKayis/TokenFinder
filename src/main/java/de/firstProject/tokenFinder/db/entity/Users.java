@@ -1,5 +1,8 @@
 package de.firstProject.tokenFinder.db.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -7,8 +10,10 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Version;
 
 @Entity
 @Table(name = "USERS")
@@ -16,32 +21,35 @@ public class Users {
 
 	@Column(name = "id")
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "UserSeqGenerator")
+	@SequenceGenerator(name = "UserSeqGenerator", sequenceName = "USER_SEQ")
 	private Long id;
+
+	@Version
 	private int version;
+
+	@Column(name = "USER_NAME")
 	private String userName;
 
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	private Token token;
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<Token> tokens;
 
-	public Users() {
-	}
-
-	public Users(final int version, final String userName) {
-		super();
-		this.version = version;
-		this.userName = userName;
+	public void addToken(final Token token) {
+		if (this.tokens == null) {
+			this.tokens = new ArrayList<Token>();
+		}
+		token.setUser(this);
+		this.tokens.add(token);
 	}
 
 	public Long getId() {
 		return this.id;
 	}
 
-	public Token getToken() {
-		return this.token;
+	public List<Token> getTokens() {
+		return this.tokens;
 	}
 
-	@Column(name = "USER_NAME")
 	public String getUserName() {
 		return this.userName;
 	}
@@ -50,26 +58,24 @@ public class Users {
 		return this.version;
 	}
 
-	public void setId(final Long id) {
-		this.id = id;
-	}
-
-	public void setToken(final Token token) {
-		this.token = token;
+	public void removeToken(final Token token) {
+		if (this.tokens == null) {
+			// throw Exception
+		}
+		if (!this.tokens.contains(token)) {
+			// throw Exception
+		}
+		this.tokens.remove(token);
+		token.setUser(null);
 	}
 
 	public void setUserName(final String userName) {
 		this.userName = userName;
 	}
 
-	public void setVersion(final int version) {
-		this.version = version;
-	}
-
 	@Override
 	public String toString() {
-		return "Users [id=" + this.id + ", version=" + this.version + ", userName=" + this.userName + ", token="
-				+ this.token + "]";
+		return this.userName + "[" + this.id + "," + this.version + "]";
 	}
 
 }
