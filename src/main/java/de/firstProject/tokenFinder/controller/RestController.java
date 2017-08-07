@@ -76,6 +76,7 @@ public class RestController {
 	// * the user name
 	// * @return users from the userRepository
 	// */
+
 	// // // ?????-> http://localhost:8080/user/adduser/malsehen
 	// @RequestMapping(value = "/user/adduser/{userName}", method =
 	// RequestMethod.GET)
@@ -100,7 +101,18 @@ public class RestController {
 	// System.out.println(user1.toString());
 	// return this.userRepository.findAll();
 	// }
-	//
+
+	// @RequestMapping(value = "/user/adduser/{userName}", method =
+	// RequestMethod.GET)
+	// public void addUser(@PathVariable final String userName) {
+	// Users user1 = new Users();
+	// Token token1 = new Token();
+	// Application application1 = new Application();
+	// application1.setApplicationName("applicationName");
+	// token1.setApplication(application1);
+	// token1.setContent("tokenContent");
+	// token1.setUser(user1);
+	// }
 
 	@RequestMapping(value = "token/{tokenId}", method = RequestMethod.GET)
 	public Optional<Token> getToken(@PathVariable final Long tokenId) {
