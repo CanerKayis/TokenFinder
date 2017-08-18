@@ -10,6 +10,6 @@ import de.firstProject.tokenFinder.db.entity.User;
 @Repository
 public interface UserRepository extends CrudRepository<User, Long> {
 
-	List<User> findByuserName(String userName);
+	List<User> findByUserName(String userName);
 
 }
