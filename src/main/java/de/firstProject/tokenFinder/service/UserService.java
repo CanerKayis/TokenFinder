@@ -45,7 +45,7 @@ public class UserService {
 	}
 
 	public List<User> getUsers(final String userName) {
-		List<User> users = this.userRepository.findByuserName(userName);
+		List<User> users = this.userRepository.findByUserName(userName);
 		return users;
 	}
 
