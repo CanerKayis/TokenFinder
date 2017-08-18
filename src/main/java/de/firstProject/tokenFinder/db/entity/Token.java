@@ -32,7 +32,7 @@ public class Token {
 	@Enumerated(EnumType.STRING)
 	public Environment environment;
 
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	public Application application;
 
 	public Application getApplication() {

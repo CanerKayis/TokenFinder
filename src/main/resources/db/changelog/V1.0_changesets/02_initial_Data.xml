@@ -30,9 +30,62 @@
 		
 		</insert>
 	</changeSet>
-
-
-
+	
+		<changeSet id="insertData2" author="ckayis">
+		<insert tableName="application">
+	 	<column name="id">5</column> 
+		<column name="version">123</column>
+		<column name="application_name">TestAppName</column>
+		</insert>
+		
+		<insert tableName="token">
+		<column name="id">6</column> 
+		<column name="version">123</column>
+		<column name="content">TestTokenContent</column>
+		<column name="environment">TST</column>
+		<column name="user_id">7</column>
+		<column name="application_id">5</column>
+		</insert>
+		
+		<insert tableName="users">
+	 	<column name="id">7</column> 
+		<column name="username">TestUser</column>
+		<column name="version">123</column>
+		
+		</insert>
+	</changeSet>
+	
+		<changeSet id="insertData3" author="ckayis">
+		<insert tableName="application">
+	 	<column name="id">8</column> 
+		<column name="version">123</column>
+		<column name="application_name">TestAppName</column>
+		</insert>
+		
+		<insert tableName="token">
+		<column name="id">9</column> 
+		<column name="version">123</column>
+		<column name="content">TestTokenContent</column>
+		<column name="environment">TST</column>
+		<column name="user_id">10</column>
+		<column name="application_id">8</column>
+		</insert>
+				<insert tableName="token">
+		<column name="id">11</column> 
+		<column name="version">123</column>
+		<column name="content">TestTokenContent</column>
+		<column name="environment">TST</column>
+		<column name="user_id">10</column>
+		<column name="application_id">8</column>
+		</insert>
+		
+		<insert tableName="users">
+	 	<column name="id">10</column> 
+		<column name="username">TestUser123</column>
+		<column name="version">123</column>
+		
+		</insert>
+	</changeSet>
 
 
 
