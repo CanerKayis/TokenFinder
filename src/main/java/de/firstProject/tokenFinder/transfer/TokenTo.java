@@ -1,14 +1,11 @@
 package de.firstProject.tokenFinder.transfer;
 
 import de.firstProject.tokenFinder.db.entity.Application;
-import de.firstProject.tokenFinder.db.entity.Users;
 
 public class TokenTo {
 	private int version;
 
 	private String content;
-
-	private Users user;
 
 	private Application application;
 
@@ -18,10 +15,6 @@ public class TokenTo {
 
 	public String getContent() {
 		return this.content;
-	}
-
-	public Users getUserTo() {
-		return this.user;
 	}
 
 	public int getVersion() {
@@ -34,10 +27,6 @@ public class TokenTo {
 
 	public void setContent(final String content) {
 		this.content = content;
-	}
-
-	public void setUserTo(final Users user) {
-		this.user = this.user;
 	}
 
 	public void setVersion(final int version) {

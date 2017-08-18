@@ -13,10 +13,9 @@ public class UserTo {
 
 	public void addToken(final TokenTo token) {
 		if (this.getTokens() == null) {
-			this.setTokens(new ArrayList<TokenTo>());
+			this.tokens = new ArrayList<TokenTo>();
 		}
-		token.setUserTo(token.getUserTo());
-		this.getTokens().add(token);
+		this.tokens.add(token);
 	}
 
 	public List<TokenTo> getTokens() {
@@ -39,7 +38,7 @@ public class UserTo {
 			// throw Exception
 		}
 		this.getTokens().remove(token);
-		token.setUserTo(null);
+
 	}
 
 	public void setTokens(final List<TokenTo> tokens) {

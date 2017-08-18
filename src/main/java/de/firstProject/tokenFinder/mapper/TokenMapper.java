@@ -13,8 +13,16 @@ public class TokenMapper {
 		tokenTo.setVersion(token.getVersion());
 		tokenTo.setContent(token.getContent());
 		tokenTo.setApplication(token.getApplication());
-		tokenTo.setUserTo(token.getUser());
 		return tokenTo;
+	}
+
+	public Token map(final TokenTo tokenTo) {
+		Token token = new Token();
+		token.setVersion(tokenTo.getVersion());
+		token.setContent(tokenTo.getContent());
+		token.setApplication(tokenTo.getApplication());
+		return token;
+
 	}
 
 }

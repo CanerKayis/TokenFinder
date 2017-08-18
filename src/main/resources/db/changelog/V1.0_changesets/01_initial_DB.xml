@@ -6,91 +6,70 @@
    http://www.liquibase.org/xml/ns/dbchangelog 
    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
 
+	<!-- failOnError edit -->
+	<changeSet id="addTokenTable" author="ckayis">
 
-<changeSet id="addTokenTable" author="ckayis">
+		<createSequence cycle="false" incrementBy="1" minValue="1"
+			schemaName="public" sequenceName="TOKEN_SEQ" startValue="1" />
+		<createTable tableName="token">
+			<column name="id" type="bigint">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="version" type="integer">
+				<constraints nullable="false" />
+			</column>
+			<column name="content" type="varchar2">
+			</column>
+			<column name="environment" type="varchar2">
+			</column>
+			<column name="user_id" type="bigint"/> <!--  constraints foreignKeyName="id"/> --> 
+			<column name="application_id" type="bigint">
+				<!-- <constraints foreignKeyName="id"/> -->
+			</column>
+		</createTable>
+	</changeSet>
 
-<createSequence 
-            cycle="false"
-            incrementBy="1"
-            minValue="1"
-            ordered="true"
-            schemaName="public"
-            sequenceName="TOKEN_SEQ"
-            startValue="1"/>
-            
-	<createTable tableName="token">
-		<column name="id" type="bigint">
-		<constraints primaryKey="true" nullable="false"/>
-		</column>
-		<column name="version" type="integer">
-		<constraints nullable="false"/>
-		</column>
-		<column name="content" type="varchar2">
-		</column>
-		<column name="environment" type="integer">
-		</column>
-<!-- 		<column name="user_id" type="bigint">
-		<constraints foreignKeyName="id"/>
-		</column>
-		<column name="application_id" type="bigint">
-		<constraints foreignKeyName="id"/>
-		</column> -->
-	</createTable>
-</changeSet>
+	<changeSet id="addUserTable" author="ckayis">
+		<createSequence cycle="false" incrementBy="1" minValue="1"
+			schemaName="public" sequenceName="USER_SEQ" startValue="1" />
 
-<changeSet id="addUserTable" author="ckayis">
-<createSequence 
-            cycle="false"
-            incrementBy="1"
-            minValue="1"
-            ordered="true"
-            schemaName="public"
-            sequenceName="USER_SEQ"
-            startValue="1"/>
-            
-	<createTable tableName="users">
-		<column name="id" type="bigint">
-		<constraints primaryKey="true" nullable="false"/>
-		</column>
-		<column name="name" type="varchar2(50)" >
-		</column>
-		<column name="version" type="integer">
-		</column>
-		
-<!-- 		<column name="token_id" type="bigint">
-		<constraints foreignKeyName="id"/>
-		</column> 
-	
- 	<addForeignKeyConstraint constraintName="addFk_userId_to_token" referencedTableName="token" baseColumnNames="id" 
-	baseTableName="users" referencedColumnNames="id"/>   	-->
-	
-</createTable>
-</changeSet>
+		<createTable tableName="users">
+			<column name="id" type="bigint">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="username" type="varchar2(50)">
+			</column>
+			<column name="version" type="integer">
+			</column>
+
+			<!-- <column name="token_id" type="bigint"> <constraints foreignKeyName="id"/> 
+				</column> -->
+
+			<!-- <addForeignKeyConstraint constraintName="addFk_userId_to_token" referencedTableName="token" 
+				baseColumnNames="id" baseTableName="users" referencedColumnNames="id"/> -->
+
+		</createTable>
+	</changeSet>
 
 
-<changeSet id="addApplicationTable" author="ckayis">
-<createSequence 
-            cycle="false"
-            incrementBy="1"
-            minValue="1"
-            ordered="true"
-            schemaName="public"
-            sequenceName="APPLICATION_SEQ"
-            startValue="1"/>
+	<changeSet id="addApplicationTable" author="ckayis">
+		<createSequence cycle="false" incrementBy="1" minValue="1"
+			schemaName="public" sequenceName="APPLICATION_SEQ" startValue="1" />
 
-	<createTable tableName="application">
-		<column name="id" type="bigint">
-		<constraints primaryKey="true" nullable="false"/>
-		</column>
-		<column name="version" type="integer">
-		</column>
-		<column name="appname" type="varchar2(30)" >
-		<!-- #addSize -->
-		</column>
-	</createTable>
-	<addForeignKeyConstraint constraintName="addFk_applicationId_to_token" referencedTableName="token" baseColumnNames="id"
-	baseTableName="application" referencedColumnNames="id"/>
-</changeSet>
+		<createTable tableName="application">
+			<column name="id" type="bigint">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="version" type="integer">
+			</column>
+			<column name="application_name" type="varchar2(30)">
+				<!-- #addSize -->
+			</column>
+		</createTable>
+		<addForeignKeyConstraint constraintName="addFk_applicationId_to_token"
+			baseTableName="token" baseColumnNames="application_id" referencedTableName="application"
+			referencedColumnNames="id" />
+	</changeSet>
 
 
 

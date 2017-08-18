@@ -40,4 +40,12 @@ public class Application {
 		this.applicationName = applicationName;
 	}
 
+	public void setId(final Long id) {
+		this.id = id;
+	}
+
+	public void setVersion(final int version) {
+		this.version = version;
+	}
+
 }

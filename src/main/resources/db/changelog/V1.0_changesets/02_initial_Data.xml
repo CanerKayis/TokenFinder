@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd 
+   http://www.liquibase.org/xml/ns/dbchangelog 
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+	<!-- failOnError edit -->
+	<changeSet id="insertData" author="ckayis">
+		<insert tableName="application">
+	 	<column name="id">1</column> 
+		<column name="version">123</column>
+		<column name="application_name">TestAppName</column>
+		</insert>
+		
+		<insert tableName="token">
+		<column name="id">2</column> 
+		<column name="version">123</column>
+		<column name="content">TestTokenContent</column>
+		<column name="environment">TST</column>
+		<column name="user_id">3</column>
+		<column name="application_id">1</column>
+		</insert>
+		
+		<insert tableName="users">
+	 	<column name="id">3</column> 
+		<column name="username">TestUser</column>
+		<column name="version">123</column>
+		
+		</insert>
+	</changeSet>
+
+
+
+
+
+
+</databaseChangeLog>

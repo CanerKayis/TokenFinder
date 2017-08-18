@@ -17,7 +17,7 @@ import javax.persistence.Version;
 
 @Entity
 @Table(name = "USERS")
-public class Users {
+public class User {
 
 	@Column(name = "id")
 	@Id
@@ -28,17 +28,13 @@ public class Users {
 	@Version
 	private int version;
 
-	@Column(name = "USER_NAME")
+	@Column(name = "username")
 	private String userName;
 
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private List<Token> tokens;
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "id")
+	private List<Token> tokens = new ArrayList<Token>();
 
 	public void addToken(final Token token) {
-		if (this.tokens == null) {
-			this.tokens = new ArrayList<Token>();
-		}
-		token.setUser(this);
 		this.tokens.add(token);
 	}
 
@@ -66,16 +62,27 @@ public class Users {
 			// throw Exception
 		}
 		this.tokens.remove(token);
-		token.setUser(null);
 	}
 
-	public void setUserName(final String userName) {
-		this.userName = userName;
+	public void setId(final Long id) {
+		this.id = id;
+	}
+
+	public void setTokens(final List<Token> tokens) {
+		this.tokens = tokens;
+	}
+
+	public void setUserName(final String name) {
+		this.userName = name;
+	}
+
+	public void setVersion(final int version) {
+		this.version = version;
 	}
 
 	@Override
 	public String toString() {
-		return this.userName + "[" + this.id + "," + this.version + "]";
+		return this.userName + "[" + this.id + "," + this.getVersion() + "]";
 	}
 
 }

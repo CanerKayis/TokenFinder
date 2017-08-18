@@ -3,11 +3,13 @@ package de.firstProject.tokenFinder.db.repository;
 import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
-import de.firstProject.tokenFinder.db.entity.Users;
+import de.firstProject.tokenFinder.db.entity.User;
 
-public interface UserRepository extends CrudRepository<Users, Long> {
+@Repository
+public interface UserRepository extends CrudRepository<User, Long> {
 
-	List<Users> findByUserName(String userName);
+	List<User> findByuserName(String userName);
 
 }
